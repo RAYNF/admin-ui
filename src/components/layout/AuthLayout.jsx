@@ -1,25 +1,22 @@
 import Logo from "../elements/logo";
 import FormSignIn from "../fragments/FormSignIn";
 
-
-const AuthLayout = () => {
+const AuthLayout = (props) => {
+  const { children, type } = props;
   return (
     <div className="flex justify-center min-h-screen items-center bg-special-mainBg">
       {/* container start */}
       <div className="w-full max-w-sm">
         {/* logo start */}
-       <Logo/>
+        <Logo />
         {/* logo end */}
         {/* form start */}
-        <div className="mt-16">
-         <FormSignIn/>
-        </div>
+        <div className="mt-16">{children}</div>
         {/* form end */}
         {/* teks start */}
         <div className="my-9 px-7 flex justify-center text-xs text-gray-03 items-center flex-col static">
           <div className="border border-gray-05 w-full"></div>
           <div className="px-2 bg-special-mainBg absolute">
-            {" "}
             or sign in with
           </div>
         </div>
@@ -92,7 +89,16 @@ const AuthLayout = () => {
         {/* sign in with google end */}
         {/* link start */}
         <div className="flex justify-center">
-          <a className="text-primary text-sm font-bold">Create an account</a>
+          {type == "sign up" ? (
+            <>
+              <span className="text-sm text-gray-03">
+                Already have an account?&nbsp;
+              </span>
+              <a className="text-primary text-sm font-bold">Sign In Here</a>
+            </>
+          ) : (
+            <a className="text-primary text-sm font-bold">Create an acount</a>
+          )}
         </div>
         {/* link end */}
       </div>

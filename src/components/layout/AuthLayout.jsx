@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "../elements/logo";
 import FormSignIn from "../fragments/FormSignIn";
 
@@ -16,9 +17,7 @@ const AuthLayout = (props) => {
         {/* teks start */}
         <div className="my-9 px-7 flex justify-center text-xs text-gray-03 items-center flex-col static">
           <div className="border border-gray-05 w-full"></div>
-          <div className="px-2 bg-special-mainBg absolute">
-            or sign in with
-          </div>
+          <div className="px-2 bg-special-mainBg absolute">or sign in with</div>
         </div>
         {/* teks end */}
         {/* sign in with google start */}
@@ -94,10 +93,14 @@ const AuthLayout = (props) => {
               <span className="text-sm text-gray-03">
                 Already have an account?&nbsp;
               </span>
-              <a className="text-primary text-sm font-bold">Sign In Here</a>
+              <Link to="/login" className="text-primary text-sm font-bold">
+                Sign In Here
+              </Link>
             </>
           ) : (
-            <a className="text-primary text-sm font-bold">Create an acount</a>
+            <Link to="/register" className="text-primary text-sm font-bold">
+              Create an acount
+            </Link>
           )}
         </div>
         {/* link end */}

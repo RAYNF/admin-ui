@@ -26,12 +26,14 @@ const BalancePage = () => {
           <Card />
         </div>
 
-        <div className="sm:w-1/3">
-          <Card />
-        </div>
+        <div className="sm:w-2/3">
+          <div className="mb-4">
+            <Card />
+          </div>
 
-        <div className="sm:w-1/3">
-          <Card />
+          <div className="mb-4">
+            <Card />
+          </div>
         </div>
       </div>
       {/* bottom content end */}

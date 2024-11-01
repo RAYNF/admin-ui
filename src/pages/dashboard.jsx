@@ -1,7 +1,6 @@
 import MainLayout from "../components/layout/MainLayout";
 import Card from "../components/elements/card";
 
-
 const DashboardPage = () => {
   return (
     <MainLayout type="dashboard">
@@ -25,15 +24,16 @@ const DashboardPage = () => {
           <Card />
         </div>
 
-        {/* <div className="sm:w-2/3"> */}
-        <div className="mb-4 sm:w-1/3">
-          <Card />
-        </div>
+        <div className="sm:w-2/3">
+          <div className="mb-4">
+            <Card />
+          </div>
 
-        <div className="mb-4 sm:w-1/3">
-          <Card />
+          <div className="mb-4">
+            <Card />
+          </div>
         </div>
-        {/* </div> */}
+      
       </div>
       {/* bottom content end */}
     </MainLayout>

@@ -35,3 +35,5 @@ const CardBill = () => {
   />
   )
 };
+
+export default CardBill

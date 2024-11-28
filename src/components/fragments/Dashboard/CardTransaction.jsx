@@ -2,7 +2,7 @@ import { useState } from "react";
 import transactions from "../../../data/transaction";
 import Card from "../../elements/card";
 
-const cardTransaction = () => {
+const CardTransaction = () => {
   const tabs = ["All", "Revenue", "Expense"];
   const [activateTab, setActiveTab] = useState("All");
   const [trxs, setTrx] = useState(transactions);
@@ -69,3 +69,5 @@ const cardTransaction = () => {
     />
   );
 };
+
+export default CardTransaction;

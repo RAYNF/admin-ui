@@ -34,3 +34,5 @@ const CardExpenseBreakdown = () => {
     />
   );
 };
+
+export default CardExpenseBreakdown

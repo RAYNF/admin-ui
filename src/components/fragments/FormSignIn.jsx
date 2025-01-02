@@ -1,20 +1,19 @@
 import Button from "../elements/Button";
 import CheckBox from "../elements/Checkbox";
 import LabelInput from "../elements/LabelInput";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState, useContext } from "react";
-import CustomizedSnackbars from "../elements/SnackBar";
+import { useContext } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
+import { NotifContext } from "../../context/notifContext";
 
 const FormSignIn = () => {
-  const navigate = useNavigate();
-  const [msg, setMsg] = useState("");
-  const [open, setOpen] = useState(true);
+  const { setMsg, setOpen, setIsLoading } = useContext(NotifContext);
   const { setIsLoggedIn, setName } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,6 +23,7 @@ const FormSignIn = () => {
   const onErrors = (errors) => console.error(errors);
 
   const onFormSubmit = async (data) => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "https://jwt-auth-eight-neon.vercel.app/login",
@@ -33,18 +33,19 @@ const FormSignIn = () => {
         }
       );
       // console.log(response);
-      const decode = jwtDecode(response.data.refreshToken);
-      console.log(decode);
-
+      setIsLoading(false);
       setOpen(true);
-      setMsg({ severity: "success", desc: "Login succes" });
-      localStorage.setItem("refreshToken", response.data.refreshToken);
+      setMsg({ severity: "success", desc: "Login Success" });
 
       setIsLoggedIn(true);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+
+      const decode = jwtDecode(response.data.refreshToken);
       setName(decode.name);
 
       navigate("/");
     } catch (error) {
+      setIsLoading(false);
       if (error.response) {
         // console.log(error.response);
         setOpen(true);
@@ -96,11 +97,9 @@ const FormSignIn = () => {
       </div>
       {/* <Link to="/"> */}
       <Button
-        variant={
-          !isValid
-            ? "bg-gray-05 w-full text-white"
-            : "bg-primary w-full text-white"
-        }
+        variant={`${
+          !isValid ? "bg-gray-05" : "bg-primary zoom-in"
+        } w-full text-white`}
         type="submit"
         disabled={!isValid ? "disabled" : ""}
       >
@@ -108,14 +107,15 @@ const FormSignIn = () => {
       </Button>
       {/* </Link> */}
       {/* <div className="mt-3 text-center text-red-500">{msg}</div> */}
-      {msg && (
+
+      {/* {msg && (
         <CustomizedSnackbars
           severity={msg.severity}
           message={msg.desc}
           open={open}
           setOpen={setOpen}
         />
-      )}
+      )} */}
     </form>
   );
 };

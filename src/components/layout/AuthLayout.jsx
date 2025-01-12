@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
 import Logo from "../elements/logo";
 import { useContext } from "react";
+import { BaseThemeContext } from "../../context/baseThemeContext";
 import { NotifContext } from "../../context/notifContext";
 import SimpleBackdrop from "../elements/Backdrop";
 import CustomizedSnackbars from "../elements/SnackBar";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import * as motion from "motion/react-client";
+import { useState } from "react";
 
 const AuthLayout = (props) => {
   const { children, type } = props;
-  const { msg, setMsg, open, setOpen, isLoading, setIsLoading } =
-    useContext(NotifContext);
+  const { msg, setMsg, open, setOpen, isLoading, setIsLoading } = useContext(NotifContext);
+  const { baseTheme, toggleTheme } = useContext(BaseThemeContext);
 
   return (
-    <div className="flex justify-center min-h-screen items-center bg-special-mainBg">
+    <div
+      className={`flex justify-center min-h-screen items-center ${baseTheme.bgcolor}`}
+    >
       {isLoading && (
         <SimpleBackdrop isLoading={isLoading} setIsLoading={setIsLoading} />
       )}
@@ -55,14 +60,14 @@ const AuthLayout = (props) => {
         )}
         {/* text-forgot end */}
 
+        {/* form start */}
         {type != "forgot" ? (
           <div className="mt-16">{children}</div>
         ) : (
           <div className="mt-6">{children}</div>
         )}
-        {/* form start */}
-
         {/* form end */}
+
         {type != "forgot" && (
           <>
             {/* teks start */}
@@ -73,6 +78,7 @@ const AuthLayout = (props) => {
               </div>
             </div>
             {/* teks end */}
+
             {/* sign in with google start */}
             <div className="mb-8">
               <button
@@ -177,6 +183,15 @@ const AuthLayout = (props) => {
           )}
         </div>
         {/* link end */}
+        {/* button theme start */}
+        <button
+          className={`h-12 flex items-center justify-center rounded-md text-sm w-auto bg-gray-05 text-gray-01 mt-5 mx-auto p-5`}
+          type="submit"
+          onClick={toggleTheme}
+        >
+          <DarkModeIcon />
+        </button>
+        {/* button theme finish */}
       </motion.div>
       {/* container end */}
     </div>

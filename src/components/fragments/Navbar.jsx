@@ -17,8 +17,9 @@ const Navbar = () => {
   ];
 
   const { theme, setTheme } = useContext(ThemeContext);
-  const { setIsLoggedIn, setName, name } = useContext(AuthContext);
+  const { setIsLoggedIn } = useContext(AuthContext);
   const { setMsg, setOpen, setIsLoading } = useContext(NotifContext);
+  const name = localStorage.getItem("user");
 
   const navigate = useNavigate();
 
@@ -89,7 +90,7 @@ const Navbar = () => {
     }
 
     setIsLoggedIn(false);
-    setName("");
+    localStorage.setItem("user","")
     setIsLoading(false);
 
     localStorage.removeItem("refreshToken");

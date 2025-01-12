@@ -9,11 +9,16 @@ const Card = (props) => {
           {title}
         </div>
       ): (
-        <div className="text-lg text-gray-02 mb-4">{title}</div>
+        <div className="text-lg text-gray-02 mb-4">
+          {title}
+          </div>
       )}
       </>
     )}
-    <div className="bg-white rounded-lg px-6 py-5 shadow-xl flex-1">{desc}</div>
+    
+    <div className="bg-white rounded-lg px-6 py-5 shadow-xl flex-1">
+      {desc}
+      </div>
    </div> 
    
   );

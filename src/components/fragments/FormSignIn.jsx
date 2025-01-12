@@ -41,6 +41,7 @@ const FormSignIn = () => {
       localStorage.setItem("refreshToken", response.data.refreshToken);
 
       const decode = jwtDecode(response.data.refreshToken);
+      localStorage.setItem("user",decode.name)
       setName(decode.name);
 
       navigate("/");

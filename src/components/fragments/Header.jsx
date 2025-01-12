@@ -6,7 +6,9 @@ import { ThemeContext } from "../../context/themeContext";
 
 const Header = () => {
   const { theme } = useContext(ThemeContext);
-  const { name } = useContext(AuthContext);
+  // const { name } = useContext(AuthContext);
+
+  const name = localStorage.getItem("user");
 
   const date = new Date().toDateString().slice(4);
   return (
